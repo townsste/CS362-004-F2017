@@ -649,7 +649,7 @@ smithyRefactor(int currentPlayer, struct gameState *state, int handPos)
 {
 	 int i;
 	 //+3 Cards
-      for (i = 0; i < 3; i++)
+      for (i = 0; i < handPos; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -672,7 +672,7 @@ adventurerRefactor(int drawntreasure, struct gameState *state, int currentPlayer
 	else{
 	  temphand[z]=cardDrawn;
 	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-	  z++;
+	  z=0;
 	}
       }
       while(z-1>=0){
@@ -682,12 +682,12 @@ adventurerRefactor(int drawntreasure, struct gameState *state, int currentPlayer
       return 0;
 }
 
-council_roomRefactor(int currentPlayer, struct gameState *state, int handPos)
+int council_roomRefactor(int currentPlayer, struct gameState *state, int handPos)
 {
 	int i;
 	
 	//+4 Cards
-      for (i = 0; i < 4; i++)
+      for (i = 0; i < 5; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -710,7 +710,7 @@ council_roomRefactor(int currentPlayer, struct gameState *state, int handPos)
       return 0;
 }
 
-feastRefactor(int currentPlayer, struct gameState *state, int *temphand, int choice1)
+int feastRefactor(int currentPlayer, struct gameState *state, int *temphand, int choice1)
 {
 	int i;
 	int x;
@@ -767,7 +767,7 @@ feastRefactor(int currentPlayer, struct gameState *state, int *temphand, int cho
       return 0;
 }
 
-mineRefactor(int currentPlayer, struct gameState *state, int choice1, int choice2, int handPos)
+int mineRefactor(int currentPlayer, struct gameState *state, int choice1, int choice2, int handPos)
 {
 	int i;
 	int j;
@@ -838,13 +838,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       council_roomRefactor(currentPlayer, state, handPos);
 			
     case feast:
-		feastRefactor(currentPlayer, state, &temphand, choice1);
+		return feastRefactor(currentPlayer, state, &temphand, choice1);
 		
 	case gardens:
       return -1;
 			
     case mine:
-		mineRefactor(currentPlayer, state, choice1, choice2, handPos);
+		mineRefactor(currentPlayer, state, choice2, choice1, handPos);
 			
     case remodel:
       j = state->hand[currentPlayer][choice1];  //store card we will trash
