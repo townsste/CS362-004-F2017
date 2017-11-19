@@ -1,0 +1,41 @@
+Bug1:
+Smithy
+	Expected:
+		Add 3 cards
+	Results:
+		Only adds 1
+
+Bug2:
+Smithy
+	Expected
+		Discard 1 Card
+	Results:
+		Discards 3 cards 
+
+Bug3:
+Great Hall
+	Expected:
+		Add 1 to action
+	Results:
+		Action decreased by 1
+
+Bug4:
+village
+	Expected:
+		Add 2 to action
+	Results:
+		Action added by 20
+		
+Bug5
+Council Room
+	Expected:
+		Add 4 cards
+	Results:
+		Added 2 cards
+
+Bug6
+Adventurer
+	Expected:
+		Counter to decrease by 1
+	Results:
+		Counter decreased by 10
